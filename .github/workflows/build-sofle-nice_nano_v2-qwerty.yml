@@ -1,0 +1,26 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+# Custom build for Sofle with encoders and QWERTY layout
+# Urob-style timeless home row mods with macOS optimizations
+# Left encoder: Volume control
+# Right encoder: Desktop switching (macOS Mission Control)
+
+name: 'Build Sofle QWERTY nice_nano_v2 Encoders'
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'config/sofle.keymap'
+      - 'config/sofle.conf'
+      - 'miryoku/**'
+
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["sofle_left","sofle_right"]'
+      alphas: '["qwerty"]'
+      clipboard: '["mac"]'

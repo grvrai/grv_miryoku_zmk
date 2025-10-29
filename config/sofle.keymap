@@ -4,3 +4,15 @@
 #include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/60/sofle.h"
 #include "../miryoku/miryoku.dtsi"
+
+// Encoder configuration for Sofle
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        // Add encoder bindings to the base layer
+        // Left encoder: Volume up/down
+        // Right encoder: Desktop switching (macOS Mission Control: Ctrl+Arrow)
+        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
+    };
+};

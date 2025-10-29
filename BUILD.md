@@ -4,51 +4,16 @@ This guide covers both local and GitHub Actions builds for your Corne and Sofle 
 
 ---
 
-## 🏠 LOCAL BUILD (Fast, Good for Testing)
+## 🏠 LOCAL BUILD (Advanced - GitHub Actions Recommended Instead)
 
-### Prerequisites
+**⚠️ Note**: Local builds with Miryoku are complex due to the custom build system. **Using GitHub Actions is much easier and recommended** (see below).
 
-**Install Docker** (easiest method):
-- macOS: `brew install --cask docker` or download from [docker.com](https://www.docker.com/products/docker-desktop)
-- Start Docker Desktop
+If you still want to build locally, you'll need to:
+1. Clone the full ZMK repository
+2. Set up the Miryoku build environment
+3. Configure west (Zephyr build tool)
 
-### Build Commands
-
-```bash
-# Build both keyboards (recommended first time)
-./build-local.sh all
-
-# Build only Corne
-./build-local.sh corne
-
-# Build only Sofle
-./build-local.sh sofle
-```
-
-### Output
-
-Firmware files will be in `build/` directory:
-- `build/corne_left.uf2`
-- `build/corne_right.uf2`
-- `build/sofle_left.uf2`
-- `build/sofle_right.uf2`
-
-### Troubleshooting Local Builds
-
-**If Docker build fails:**
-```bash
-# Pull latest ZMK build image
-docker pull zmkfirmware/zmk-build-arm:stable
-
-# Clean build directory
-rm -rf build/
-mkdir build
-```
-
-**If you get permission errors:**
-```bash
-chmod +x build-local.sh
-```
+This is beyond the scope of this guide. **Use GitHub Actions instead** - it's free, automated, and much simpler!
 
 ---
 

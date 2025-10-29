@@ -49,3 +49,6 @@ MIRYOKU_LAYER_LIST
 #else
   #include "miryoku_behaviors.dtsi"
 #endif
+
+// Smart-num (numword) behavior - urob's auto-layer
+#include "miryoku_smart_num.dtsi"

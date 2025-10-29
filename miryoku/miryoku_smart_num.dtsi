@@ -1,0 +1,44 @@
+// Copyright 2024
+// Smart-num (numword) behavior - urob's auto-layer implementation
+// Tap to activate sticky number layer, hold for regular layer
+// Auto-deactivates when non-number key is pressed
+
+/ {
+    behaviors {
+        // Smart-num behavior using auto-layer module
+        // Tap = sticky number layer (auto-deactivates)
+        // Hold = regular number layer
+        smart_num: smart_num {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <125>;
+            bindings = <&mo>, <&num_dance>;
+        };
+
+        // Tap-dance for single tap activation
+        num_dance: num_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&num_word>, <&none>;
+        };
+
+        // Auto-layer behavior (numword)
+        // Stays active while typing numbers, auto-deactivates on other keys
+        num_word: num_word {
+            compatible = "zmk,behavior-caps-word";
+            #binding-cells = <0>;
+            layers = <U_NUM>;
+            continue-list = <
+                BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL
+                N1 N2 N3 N4 N5 N6 N7 N8 N9 N0
+            >;
+            ignore-numbers;
+        };
+    };
+};
+
+// Macro to use smart-num
+#define U_SMART_NUM &smart_num U_NUM 0
